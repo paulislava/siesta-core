@@ -1,4 +1,4 @@
-import { Command, Ctx, Hears, Scene, Start, Update } from 'nestjs-telegraf'
+import { Command, Ctx, Hears, Start, Update } from 'nestjs-telegraf'
 import { Context, Scenes } from 'telegraf'
 
 @Update()
