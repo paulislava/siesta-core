@@ -52,7 +52,7 @@ export class AuthService {
 
     const now = new Date()
     const expires = new Date(now.setDate(now.getDate() + 30))
-    const requestUser: RequestUser = { userId: user.id, organizationId: user.organizationId }
+    const requestUser: RequestUser = { userId: user.id }
     const token = this.jwtService.sign(requestUser, { expiresIn: '30d' })
     res.cookie(this.configService.auth.jwtCookie, token, {
       expires

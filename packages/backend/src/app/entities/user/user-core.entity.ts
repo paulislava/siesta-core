@@ -1,13 +1,4 @@
-import {
-  BaseEntity,
-  Column,
-  CreateDateColumn,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn
-} from 'typeorm'
-
-import { Organization } from '../organization.entity'
+import { BaseEntity, Column, CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm'
 
 export abstract class UserCore extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -24,13 +15,6 @@ export abstract class UserCore extends BaseEntity {
 
   @Column('varchar', { nullable: true })
   tel: string | null
-
-  @Column({ name: 'organization_id' })
-  organizationId: number
-
-  @ManyToOne(() => Organization)
-  @JoinColumn({ name: 'organization_id' })
-  organization: Organization
 
   @CreateDateColumn({ name: 'created_at' })
   readonly createdAt: Date
