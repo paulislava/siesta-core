@@ -1,0 +1,16 @@
+{
+  "name": "@template/shared",
+  "private": true,
+  "exports": {
+    "./": "./build/"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "build/*"
+      ]
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
