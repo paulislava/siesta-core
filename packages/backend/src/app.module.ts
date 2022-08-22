@@ -11,7 +11,6 @@ import { HttpClientsModule } from './common/http-clients/http-clients.module'
 import { MailModule } from './app/mail/mail.module'
 import { AppAdminModule } from './app/admin/admin.module'
 import { UserModule } from './app/users/user.module'
-import { PaymentModule } from './app/payments/payment.module'
 import { ASSETS_FILE_PATH } from './constants'
 import { TelegramModule } from './app/telegram/telegram.module'
 
@@ -28,7 +27,6 @@ import { TelegramModule } from './app/telegram/telegram.module'
     AuthModule,
     AppAdminModule,
     UserModule,
-    PaymentModule,
     TelegramModule
   ],
   controllers: [AppController],
