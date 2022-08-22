@@ -1,9 +1,5 @@
 import { Module } from '@nestjs/common'
 import { EventEmitterModule } from '@nestjs/event-emitter'
-import { AdminModule } from '@adminjs/nestjs'
-import AdminJS, { LocaleTranslationsBlock, ResourceWithOptions } from 'adminjs'
-import { Database, Resource } from '@adminjs/typeorm'
-import { BaseEntity, ObjectType } from 'typeorm'
 import { MulterModule } from '@nestjs/platform-express'
 
 import { AppController } from './app.controller'
@@ -17,6 +13,7 @@ import { AppAdminModule } from './app/admin/admin.module'
 import { UserModule } from './app/users/user.module'
 import { PaymentModule } from './app/payments/payment.module'
 import { ASSETS_FILE_PATH } from './constants'
+import { TelegramModule } from './app/telegram/telegram.module'
 
 @Module({
   imports: [
@@ -31,7 +28,8 @@ import { ASSETS_FILE_PATH } from './constants'
     AuthModule,
     AppAdminModule,
     UserModule,
-    PaymentModule
+    PaymentModule,
+    TelegramModule
   ],
   controllers: [AppController],
   providers: [AppService]
