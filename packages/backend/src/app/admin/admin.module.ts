@@ -3,18 +3,13 @@ import { copyFileSync, existsSync, unlinkSync, promises } from 'fs'
 
 import { AdminModule } from '@adminjs/nestjs'
 import { Database, Resource } from '@adminjs/typeorm'
-import uploadFileFeature, { BaseProvider } from '@adminjs/upload'
+import { BaseProvider } from '@adminjs/upload'
 import { Module } from '@nestjs/common'
 import AdminJS, { ActionContext, CurrentAdmin, UploadedFile } from 'adminjs'
 
 import { AuthModule } from '../auth/auth.module'
 import { AuthService } from '../auth/auth.service'
 import { AdminUser } from '../entities/admin-user.entity'
-import { BalanceChange } from '../entities/balance-change.entity'
-import { Organization } from '../entities/organization.entity'
-import { PayableService } from '../entities/payable-service.entity'
-import { PaymentOption } from '../entities/payment-option.entity'
-import { Payment } from '../entities/payment.entity'
 import { UserDraft } from '../entities/user/user-draft.entity'
 import { User } from '../entities/user/user.entity'
 
@@ -72,28 +67,7 @@ export class UploadProvider extends BaseProvider {
             rootPath: prefixPath('/admin'),
             loginPath: prefixPath('/admin/login'),
             logoutPath: prefixPath('/admin/logout'),
-            resources: [
-              User,
-              UserDraft,
-              {
-                resource: Organization,
-                properties: {},
-                features: [
-                  uploadFileFeature({
-                    provider: new UploadProvider('organizations', 'organizations'),
-                    properties: {
-                      key: 'logoPath',
-                      mimeType: 'image/*'
-                    }
-                  })
-                ]
-              },
-              BalanceChange,
-              PayableService,
-              PaymentOption,
-              Payment,
-              AdminUser
-            ],
+            resources: [User, UserDraft, AdminUser],
             locale: {
               language: 'ru',
               translations: adminTranslations

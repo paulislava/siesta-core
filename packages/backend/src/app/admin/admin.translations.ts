@@ -1,6 +1,5 @@
 import { LocaleTranslations, LocaleTranslationsBlock } from 'adminjs'
 
-import { PayableService } from '../entities/payable-service.entity'
 import { UserDraft } from '../entities/user/user-draft.entity'
 import { User } from '../entities/user/user.entity'
 
@@ -9,11 +8,9 @@ import { ResourceTranslations, entityTranslations } from './admin.translations.t
 const properties: Record<string, string> = {
   firstName: 'Имя',
   lastName: 'Фамилия',
-  organizationId: 'Клиника',
   email: 'E-mail',
   tel: 'Телефон',
   createdAt: 'Дата создания',
-  bonuses: 'Бонусы',
   userId: 'Пользователь',
   from: 'От',
   to: 'До',
@@ -24,9 +21,7 @@ const labels: Record<string, string> = {}
 
 const userTranslations: ResourceTranslations<User> = {
   name: 'Пользователи',
-  properties: {
-    money: 'Баланс'
-  }
+  properties: {}
 }
 
 const userDraftTranslations: ResourceTranslations<UserDraft> = {
@@ -34,14 +29,8 @@ const userDraftTranslations: ResourceTranslations<UserDraft> = {
   properties: {}
 }
 
-const payableServiceTranslations: ResourceTranslations<PayableService> = {
-  name: 'Платные услуги',
-  properties: {}
-}
-
 const resources: { [key: string]: Partial<LocaleTranslationsBlock> } = {
   ...entityTranslations(User, userTranslations),
-  ...entityTranslations(PayableService, payableServiceTranslations),
   ...entityTranslations(UserDraft, userDraftTranslations)
 }
 
