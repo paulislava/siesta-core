@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common'
-import { Ctx, Message, Wizard, WizardStep } from 'nestjs-telegraf'
+import { Command, Ctx, Message, SceneEnter, Wizard, WizardStep } from 'nestjs-telegraf'
 import fetch from 'node-fetch'
 import { Scenes } from 'telegraf'
 import { Chat, Message as TelegramMessage } from 'telegraf/typings/core/types/typegram'
@@ -19,6 +19,7 @@ export class TelegramTransactionTrackScene {
   @WizardStep(1)
   async enter(@Ctx() ctx: Context): Promise<void> {
     await ctx.reply('Введи номер транзакции BTC')
+
     ctx.wizard.next()
   }
 
@@ -62,6 +63,7 @@ export class TelegramTransactionTrackScene {
     await ctx.reply(`Отслеживание транзакции <b>${transactionId}</b> запущено`, {
       parse_mode: 'HTML'
     })
-    ctx.wizard.next()
+    await ctx.scene.leave()
+    await ctx.scene.enter('main')
   }
 }

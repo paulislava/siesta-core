@@ -8,6 +8,7 @@ import { ConfigService } from '../config/config.service'
 import { TrackingTransaction } from '../entities/tracking-transaction.entity'
 import { User } from '../entities/user/user.entity'
 
+import { TelegramMainScene } from './scenes/telegram-main.scene'
 import { TelegramTransactionTrackScene } from './scenes/telegram-transaction-track.scene'
 import { TelegramService } from './telegram.service'
 import { TelegramUpdate } from './telegram.update'
@@ -25,6 +26,12 @@ import { TelegramUpdate } from './telegram.update'
       })
     })
   ],
-  providers: [Telegraf, TelegramTransactionTrackScene, TelegramService, TelegramUpdate]
+  providers: [
+    Telegraf,
+    TelegramMainScene,
+    TelegramTransactionTrackScene,
+    TelegramService,
+    TelegramUpdate
+  ]
 })
 export class TelegramModule {}
