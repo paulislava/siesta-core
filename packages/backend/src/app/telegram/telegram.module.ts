@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { TelegrafModule } from 'nestjs-telegraf'
 import { session, Telegraf } from 'telegraf'
 
+import { BtcHttpClient } from '../btc/btc.client'
+import { BtcModule } from '../btc/btc.module'
 import { ConfigModule } from '../config/config.module'
 import { ConfigService } from '../config/config.service'
 import { TrackingTransaction } from '../entities/tracking-transaction.entity'
@@ -28,6 +30,7 @@ import { TelegramUpdate } from './telegram.update'
   ],
   providers: [
     Telegraf,
+    BtcHttpClient,
     TelegramMainScene,
     TelegramTransactionTrackScene,
     TelegramService,

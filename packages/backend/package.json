@@ -39,7 +39,7 @@
     "@nestjs/platform-express": "8.0.0",
     "@nestjs/schedule": "^2.1.0",
     "@nestjs/swagger": "^5.2.1",
-    "@nestjs/typeorm": "8.0.2",
+    "@nestjs/typeorm": "^9.0.0-next.2",
     "@nestjsx/crud": "^5.0.0-alpha.3",
     "@nestjsx/crud-typeorm": "^5.0.0-alpha.3",
     "@template/shared": "file:../shared",

@@ -32,3 +32,8 @@ webdav:
 
 telegram:
   token: UPDATE_THIS
+
+btc:
+  host: https://blockchain.info
+  transactionPath: /rawtx/
+  countPath: /q/getblockcount

@@ -1,4 +1,4 @@
-import { URL, URLSearchParams } from 'url'
+import { URLSearchParams } from 'url'
 
 import { Injectable } from '@nestjs/common'
 import { RequestInit } from 'node-fetch'
@@ -22,7 +22,7 @@ export class SmsHttpClientService extends BaseHttpClient {
   }
 
   async sendMessage(phones: string[] | string, message: string): Promise<void> {
-    const response = await this.get('', {
+    await this.get('', {
       phones: Array.isArray(phones) ? phones.join(';') : phones,
       mes: message
     })

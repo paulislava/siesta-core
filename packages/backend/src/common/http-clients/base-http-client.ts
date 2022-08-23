@@ -6,6 +6,8 @@ import { ClientResponseError } from './http-clients.exceptions'
 
 import ReadableStream = NodeJS.ReadableStream
 
+import { NotFoundException } from '@nestjs/common'
+
 export abstract class BaseHttpClient {
   protected abstract host: string
 
@@ -42,6 +44,10 @@ export abstract class BaseHttpClient {
       ...init,
       headers: { ...init?.headers, Authorization: this.authorization }
     })
+
+    if (resp.status == 404) {
+      throw new NotFoundException()
+    }
 
     if (resp.status >= 300 || resp.status < 200) {
       throw new ClientResponseError(resp.status, resp.statusText)

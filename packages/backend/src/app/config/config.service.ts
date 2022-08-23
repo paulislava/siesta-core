@@ -10,6 +10,7 @@ import { load } from 'js-yaml'
 import {
   ApplicationConfig,
   AuthConfig,
+  BtcConfig,
   DatabaseConfig,
   MailConfig,
   SmsConfig,
@@ -49,6 +50,10 @@ export class ConfigService implements ApplicationConfig {
 
   get telegram(): TelegramConfig {
     return this.config.telegram
+  }
+
+  get btc(): BtcConfig {
+    return this.config.btc
   }
 
   get version(): Version {

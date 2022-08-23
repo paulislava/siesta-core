@@ -5,8 +5,11 @@ import { Telegraf } from 'telegraf'
 import { Chat } from 'telegraf/typings/core/types/typegram'
 import { Repository } from 'typeorm'
 
-import { TrackingTransaction } from '../entities/tracking-transaction.entity'
 import { User } from '../entities/user/user.entity'
+import { BtcService } from '../btc/btc.service'
+import { TrackingTransaction } from '../entities/tracking-transaction.entity'
+
+import { pluralForm } from '~/common/utils/helpers'
 
 @Injectable()
 export class TelegramService {
@@ -43,5 +46,34 @@ export class TelegramService {
       needConfirmations
     })
     await trackingTransaction.save()
+  }
+
+  async sendTransactionInfo(
+    transactionId: string,
+    userId: number,
+    confirmations: number
+  ): Promise<void> {
+    await this.bot.telegram.sendMessage(
+      userId,
+      `Транзакция ${transactionId}: <b>${confirmations}</b> ${pluralForm(
+        confirmations,
+        'подтверждение',
+        'подтверждения',
+        'подтверждений'
+      )}`,
+      {
+        parse_mode: 'HTML'
+      }
+    )
+  }
+
+  async sendTransactionFinalInfo(transactionId: string, userId: number): Promise<void> {
+    await this.bot.telegram.sendMessage(
+      userId,
+      `Отслеживание транзакции <b>${transactionId}</b> завершено`,
+      {
+        parse_mode: 'HTML'
+      }
+    )
   }
 }

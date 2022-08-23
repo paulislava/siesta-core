@@ -7,6 +7,8 @@ import { Chat, Message as TelegramMessage } from 'telegraf/typings/core/types/ty
 import { TelegramService } from '../telegram.service'
 import { NOT_COMMAND_REGEX } from '../telegram.types'
 
+import { BtcHttpClient } from '~/app/btc/btc.client'
+
 interface SessionData extends Scenes.SceneSessionData {
   transactionId?: string
 }
@@ -15,7 +17,10 @@ type Context = Scenes.SceneContext<SessionData>
 
 @Scene('transaction-track')
 export class TelegramTransactionTrackScene {
-  constructor(private readonly telegramService: TelegramService) {}
+  constructor(
+    private readonly telegramService: TelegramService,
+    private readonly btcHttpClient: BtcHttpClient
+  ) {}
 
   @SceneEnter()
   async enter(@Ctx() ctx: Context): Promise<void> {
@@ -32,8 +37,9 @@ export class TelegramTransactionTrackScene {
         return
       }
 
-      const fetchTransaction = await fetch(`https://blockchain.info/rawtx/${transactionId}`)
-      if (fetchTransaction.status !== HttpStatus.OK) {
+      try {
+        await this.btcHttpClient.getTransactionInfo(transactionId)
+      } catch (e) {
         await ctx.reply('Транзакция не найдена')
         return
       }

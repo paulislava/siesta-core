@@ -116,6 +116,20 @@ export class TelegramConfig {
   readonly token: string
 }
 
+export class BtcConfig {
+  @IsString()
+  @IsDefined()
+  readonly host: string
+
+  @IsString()
+  @IsDefined()
+  readonly countPath: string
+
+  @IsString()
+  @IsDefined()
+  readonly transactionPath: string
+}
+
 export class ApplicationConfig {
   @IsDefined()
   @ValidateNested()
@@ -146,6 +160,11 @@ export class ApplicationConfig {
   @ValidateNested()
   @Type(() => TelegramConfig)
   readonly telegram: TelegramConfig
+
+  @IsDefined()
+  @ValidateNested()
+  @Type(() => BtcConfig)
+  readonly btc: BtcConfig
 }
 
 export interface Version {
